@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'accounts',
     'store',
     'carts',
+    'orders',
 ]
 
 MIDDLEWARE = [
@@ -146,9 +147,10 @@ MESSAGE_TAGS = {
 }
 
 # SMTP Configuration
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = ""  # Replace with your Gmail
-EMAIL_HOST_PASSWORD = ""  # Use the App Password
+EMAIL_HOST_USER = 'sakhim2025@gmail.com'  # Your Gmail address
+EMAIL_HOST_PASSWORD = 'Cambodiakh001'   # Your Gmail password or App Password
+DEFAULT_FROM_EMAIL = 'dornmesa8@gmail.com'  # Must match EMAIL_HOST_USER for Gmail

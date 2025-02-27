@@ -20,7 +20,8 @@ from django.conf.urls.static import static
 from sakhim import settings, views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin_honeypot/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+    path('securelogin/', admin.site.urls),
     path('', views.home, name='home'),
     path('store/', include('store.urls')),
     path('cart/', include('carts.urls')),

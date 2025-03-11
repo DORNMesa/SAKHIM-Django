@@ -1,17 +1,106 @@
 <!-- ========================= FOOTER ========================= -->
-<footer class="section-footer border-top">
-	<section class="footer-top padding-y-sm">
-		<div class="container">
-					<p style="text-align: center;">Develop By | Nget Vakhim and DORN Mesa</p>
-					<br>
-					<p style="text-align: center;">You can follow all my social media</p>
-					<div class="col-md-15 text-md-center">
-						<a href="https://www.facebook.com/profile.php?id=100062144420482" class="btn btn-icon btn-light"><i class="fab fa-facebook-f"></i></a>
-						<a href="https://www.t.me/Dornmesa" class="btn btn-icon btn-light"><i class="fab fa-telegram"></i></a>
-						<a href="https://www.instagram.com/ishowsaa/" class="btn btn-icon btn-light"><i class="fab fa-instagram"></i></a>
-						<a href="https://www.youtube.com/@DORNMesa" class="btn btn-icon btn-light"><i class="fab fa-youtube"></i></a>
-					</div>
-		</div><!-- //container -->
-	</section>	<!-- footer-top.// -->
+<footer class="section-footer bg-gradient py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- Developer Credits -->
+            <div class="col-12 text-center mb-4">
+                <p class="mb-2 text-dark fw-semibold">Developed by Nget Vakhim & Dorn Mesa</p>
+            </div>
+
+            <!-- Social Media Section -->
+            <div class="col-12 text-center">
+                <p class="mb-3 text-dark fw-medium">Follow us on social media</p>
+                <div class="social-links d-flex justify-content-center gap-3">
+                    <a href="https://www.facebook.com/profile.php?id=100062144420482" 
+                       class="btn btn-outline-primary btn-sm shadow-sm" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.t.me/Dornmesa" 
+                       class="btn btn-outline-primary btn-sm shadow-sm" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       aria-label="Telegram">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="https://www.instagram.com/ishowsaa/" 
+                       class="btn btn-outline-primary btn-sm shadow-sm" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@DORNMesa" 
+                       class="btn btn-outline-primary btn-sm shadow-sm" 
+                       target="_blank" 
+                       rel="noopener noreferrer" 
+                       aria-label="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <p class="small mb-0 text-muted">
+                    © {% now "Y" %} Nget Vakhim & Dorn Mesa. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </div> <!-- container// -->
 </footer>
-<!-- ========================= FOOTER END // ========================= -->
+<!-- ========================= FOOTER END ========================= -->
+
+<!-- Updated CSS -->
+<style>
+    .section-footer {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* Soft gradient background */
+        border-top: 1px solid #e0e0e0;
+    }
+
+    .section-footer p {
+        font-size: 0.9rem;
+    }
+
+    .social-links .btn {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        border-color: #0d6efd;
+        color: #0d6efd;
+        background-color: #ffffff;
+		gap: 5rem; 
+    }
+
+    .social-links .btn:hover {
+        background-color: #0d6efd;
+        color: #ffffff;
+        border-color: #0d6efd;
+        box-shadow: 0 2px 8px rgba(13, 110, 253, 0.2);
+    }
+
+	@media (min-width: 992px) { 
+        .social-links {
+        gap: 0.5rem; 
+        }
+    }
+
+    @media (max-width: 576px) {
+        .social-links {
+            flex-wrap: wrap;
+			gap: 0.5rem; 
+        }
+        
+        .social-links .btn {
+            width: 35px;
+            height: 35px;
+        }
+    }
+</style>

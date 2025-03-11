@@ -1,43 +1,64 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
 <!-- ========================= SECTION CONTENT ========================= -->
-<section class="section-conten padding-y" style="min-height:84vh">
+<section class="section-content padding-y" style="min-height: 84vh;">
+    <div class="container">
+        <!-- ============================ LOGIN COMPONENT ============================ -->
+        <div class="card mx-auto" style="max-width: 380px; margin-top: 100px;">
+            {% include 'includes/alerts.html' %}
+            
+            <div class="card-body">
+                <h4 class="card-title mb-4 text-center">Sign In</h4>
+                
+                <form action="{% url 'login' %}" method="POST" novalidate>
+                    {% csrf_token %}
+                    
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" 
+                               class="form-control" 
+                               id="email"
+                               name="email" 
+                               placeholder="Enter your email"
+                               required>
+                    </div> <!-- form-group// -->
 
-    <!-- ============================ COMPONENT LOGIN   ================================= -->
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" 
+                               class="form-control" 
+                               id="password"
+                               name="password" 
+                               placeholder="Enter your password"
+                               required>
+                    </div> <!-- form-group// -->
 
+                    <div class="form-group">
+                        <a href="{% url 'forgotPassword' %}" 
+                           class="float-end text-muted medium">
+                            Forgot password?
+                        </a>
+                    </div> <!-- form-group// -->
 
-        <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
-        {% include 'includes/alerts.html' %}
-          <div class="card-body">
-          <h4 class="card-title mb-4">Sign in</h4>
-          <form action="{% url 'login' %}" method="POST">
-            {% csrf_token %}
-              <div class="form-group">
-                 <input type="email" class="form-control" placeholder="Email Address" name="email">
-              </div> <!-- form-group// -->
-              <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password" name="password">
-              </div> <!-- form-group// -->
-              
-              <div class="form-group">
-                  <a href="{% url 'forgotPassword' %}" class="float-right">Forgot password?</a> 
-               
-              </div> <!-- form-group form-check .// -->
-              <div class="form-group">
-                  <button type="submit" class="btn btn-primary btn-block"> Login  </button>
-              </div> <!-- form-group// -->    
-          </form>
-          </div> <!-- card-body.// -->
-        </div> <!-- card .// -->
-    
-         <p class="text-center mt-4">Don't have account? <a href="{% url 'register' %}">Sign up</a></p>
-         <br><br>
-    <!-- ============================ COMPONENT LOGIN  END.// ================================= -->
-    
-    
-    </section>
-    <!-- ========================= SECTION CONTENT END// ========================= -->
+                    <div class="form-group mt-4">
+                        <button type="submit" 
+                                class="btn btn-primary w-100">
+                            Sign In
+                        </button>
+                    </div> <!-- form-group// -->
+                </form>
+            </div> <!-- card-body// -->
+        </div> <!-- card// -->
 
+        <div class="text-center mt-4">
+            <p class="mb-0">
+                Don't have an account? 
+                <a href="{% url 'register' %}" class="text-primary">Sign up</a>
+            </p>
+        </div>
+        <!-- ============================ LOGIN COMPONENT END ============================ -->
+    </div> <!-- container// -->
+</section>
+<!-- ========================= SECTION CONTENT END ========================= -->
 {% endblock %}

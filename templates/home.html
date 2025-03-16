@@ -1,62 +1,167 @@
 {% extends 'base.html' %}
-
 {% load static %}
 
 {% block content %}
 
-<!-- ========================= SECTION MAIN ========================= -->
+<!-- ========================= SECTION MAIN (Banner) ========================= -->
 <section class="section-intro padding-y-sm">
-<div class="container">
-
-<div class="intro-banner-wrap">
-	<img src="{% static 'images/banners/cover.jpg' %}" class="img-fluid rounded">
-</div>
-
-</div> <!-- container //  -->
+    <div class="container">
+        <div class="intro-banner-wrap">
+            <div class="banner-img rounded overflow-hidden shadow-sm">
+                <img src="{% static 'images/banners/cover.jpg' %}" class="img-fluid w-100" alt="Banner Image">
+            </div>
+        </div>
+    </div>
 </section>
 <!-- ========================= SECTION MAIN END// ========================= -->
 
-<!-- ========================= SECTION  ========================= -->
+<!-- ========================= SECTION (Popular Products) ========================= -->
 <section class="section-name padding-y-sm">
-<div class="container">
+    <div class="container">
+        <header class="section-heading d-flex justify-content-between align-items-center mb-4">
+            <h3 class="section-title">Popular Products</h3>
+            <a href="{% url 'store' %}" class="btn btn-outline-custom">See All</a>
+        </header>
 
-<header class="section-heading">
-	<a href="{% url 'store' %}" class="btn btn-outline-primary float-right">See all</a>
-	<h3 class="section-title">Popular products</h3>
-</header><!-- sect-heading -->
-
-<div class="row">
-	{% for product in products %}
-	<div class="col-lg-3 col-md-4 col-sm-6">
-		<div class="card card-product-grid">
-			<a href="{{ product.get_url }}" class="img-wrap"> 
-                {% if product.images %}
-                    <img src="{{ product.images.url }}" class="img-fluid">
-                {% else %}
-                    <img src="{% static 'images/default-product.jpg' %}" class="img-fluid">
-                {% endif %}
-            </a>
-			<figcaption class="info-wrap">
-				<a href="{{ product.get_url }}" class="title">{{ product.product_name }}</a>
-				<div class="price mt-1">${{ product.price }}</div> <!-- price-wrap.// -->
-				<div class="rating-star">
-					<span>
-						<i class="fa fa-star{% if product.averageReview < 0.5 %}-o{% elif product.averageReview >= 0.5 and product.averageReview < 1 %}-half-o {% endif %}" aria-hidden="true"></i>
-						<i class="fa fa-star{% if product.averageReview < 1.5 %}-o{% elif product.averageReview >= 1.5 and product.averageReview < 2 %}-half-o {% endif %}" aria-hidden="true"></i>
-						<i class="fa fa-star{% if product.averageReview < 2.5 %}-o{% elif product.averageReview >= 2.5 and product.averageReview < 3 %}-half-o {% endif %}" aria-hidden="true"></i>
-						<i class="fa fa-star{% if product.averageReview < 3.5 %}-o{% elif product.averageReview >= 3.5 and product.averageReview < 4 %}-half-o {% endif %}" aria-hidden="true"></i>
-						<i class="fa fa-star{% if product.averageReview < 4.5 %}-o{% elif product.averageReview >= 4.5 and product.averageReview < 5 %}-half-o {% endif %}" aria-hidden="true"></i>
-					</span>
-				</div>
-			</figcaption>
-		</div>
-	</div> <!-- col.// -->
-	{% endfor %}
-</div> <!-- row.// -->
-
-</div><!-- container // -->
+        <div class="row">
+            {% for product in products %}
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                <div class="card card-product-grid h-100">
+                    <a href="{{ product.get_url }}" class="img-wrap position-relative">
+                        {% if product.images %}
+                            <img src="{{ product.images.url }}" class="img-fluid card-img-top" alt="{{ product.product_name }}">
+                        {% else %}
+                            <img src="{% static 'images/default-product.jpg' %}" class="img-fluid card-img-top" alt="Default Product">
+                        {% endif %}
+                        <div class="overlay"></div>
+                    </a>
+                    <div class="card-body text-center">
+                        <a href="{{ product.get_url }}" class="title text-dark text-decoration-none">
+                            <h5 class="card-title">{{ product.product_name }}</h5>
+                        </a>
+                        <div class="price mt-2" style="color: #000000; font-weight: 700;">${{ product.price }}</div> <!-- Black price inspired by Nike -->
+                        <div class="rating-star mt-2">
+                            <span>
+                                <i class="fa fa-star{% if product.averageReview < 0.5 %}-o{% elif product.averageReview >= 0.5 and product.averageReview < 1 %}-half-o {% endif %}" aria-hidden="true"></i>
+                                <i class="fa fa-star{% if product.averageReview < 1.5 %}-o{% elif product.averageReview >= 1.5 and product.averageReview < 2 %}-half-o {% endif %}" aria-hidden="true"></i>
+                                <i class="fa fa-star{% if product.averageReview < 2.5 %}-o{% elif product.averageReview >= 2.5 and product.averageReview < 3 %}-half-o {% endif %}" aria-hidden="true"></i>
+                                <i class="fa fa-star{% if product.averageReview < 3.5 %}-o{% elif product.averageReview >= 3.5 and product.averageReview < 4 %}-half-o {% endif %}" aria-hidden="true"></i>
+                                <i class="fa fa-star{% if product.averageReview < 4.5 %}-o{% elif product.averageReview >= 4.5 and product.averageReview < 5 %}-half-o {% endif %}" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </section>
+<!-- ========================= SECTION END// ========================= -->
 
-<!-- ========================= SECTION  END// ========================= -->
+<style>
+    .section-intro {
+        padding: 40px 0;
+        background: #f8f9fa;
+    }
+    .banner-img {
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .banner-img img {
+        transition: transform 0.4s ease;
+    }
+    .banner-img:hover img {
+        transform: scale(1.05);
+    }
+    .section-name {
+        padding: 50px 0;
+        background: #ffffff;
+    }
+    .section-heading {
+        border-bottom: 2px solid #28a745; /* Green from navbar */
+        padding-bottom: 10px;
+    }
+    .section-title {
+        font-size: 2rem;
+        color: #2c3e50;
+        font-weight: 600;
+        margin: 0;
+    }
+    .btn-outline-custom {
+        border: 2px solid #28a745; /* Green from navbar */
+        color: #28a745;
+        border-radius: 25px;
+        padding: 8px 20px;
+        font-weight: 500;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(40, 167, 69, 0.2);
+    }
+    .btn-outline-custom:hover {
+        background: #28a745;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(40, 167, 69, 0.4);
+    }
+    .card-product-grid {
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+    .card-product-grid:hover {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        transform: translateY(-5px);
+    }
+    .img-wrap {
+        position: relative;
+        overflow: hidden;
+        display: block;
+    }
+    .img-wrap img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+    .img-wrap:hover img {
+        transform: scale(1.1);
+    }
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    .img-wrap:hover .overlay {
+        opacity: 1;
+    }
+    .card-body {
+        padding: 15px;
+    }
+    .card-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #2c3e50;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .price {
+        font-size: 1.3rem; /* Slightly larger for emphasis */
+        color: #000000; /* Black inspired by Nike */
+        font-weight: 700; /* Bold for a professional look */
+    }
+    .rating-star i {
+        color: #f1c40f; /* Kept yellow for stars */
+        font-size: 1rem;
+    }
+</style>
 
 {% endblock %}

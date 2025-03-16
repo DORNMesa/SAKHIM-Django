@@ -71,11 +71,20 @@ def product_detail(request, category_slug, product_slug):
 
 
 def search(request):
+    products = []  # Ensure products is always initialized
+    product_count = 0  # Ensure product_count is always initialized
+
     if 'keyword' in request.GET:
-        keyword = request.GET['keyword']
-        if keyword:
-            products = Product.objects.order_by('-created_date').filter(Q(description__icontains=keyword) | Q(product_name__icontains=keyword))
+        keyword = request.GET['keyword'].strip()  # Remove extra spaces
+
+        if keyword:  # If the keyword is not empty
+            products = Product.objects.order_by('-created_date').filter(
+                Q(description__icontains=keyword) | Q(product_name__icontains=keyword)
+            )
             product_count = products.count()
+        else:  # If the keyword is empty
+            messages.error(request, "Please enter a search keyword.")  # Show error message
+
     context = {
         'products': products,
         'product_count': product_count,
